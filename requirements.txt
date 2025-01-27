@@ -1,0 +1,11 @@
+ultralytics  # YOLOv8 library
+opencv-python  # For image and video processing
+gradio
+requests
+Pillow
+yt-dlp
+moviepy
+pyserial
+streamlit==1.38
+streamlit-webrtc
+av
