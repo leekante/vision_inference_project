@@ -6,11 +6,15 @@ from rembg import remove
 from PIL import Image
 import io
 
+import cv2
+import numpy as np
+
 #input_file = "image3.jpg"  # 배경을 제거할 이미지 경로
 #output_file = "image4.png"  # 저장할 이미지 경로 (PNG 형식으로 저장하는 것이 투명 배경을 유지)
 
 input_file = "test_img.jpg"  # 배경을 제거할 이미지 경로
 output_file = "test_img_back.png"  # 저장할 이미지 경로 (PNG 형식으로 저장하는 것이 투명 배경을 유지)
+output_file2 = "test_img_back_white.png"
 
 def remove_background(input_file, output_file, params=None):
     # 이미지 열기
@@ -28,7 +32,9 @@ def remove_background(input_file, output_file, params=None):
     out_img.save(output_file)
 
 # 배경 제거 함수 실행
-remove_background(input_file, output_file)
+remove_background(input_file, output_file2)
+
+# --------------------------
 
 
 # --------------------------
@@ -56,6 +62,7 @@ contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPL
 # 윤곽선을 그려서 객체를 시각화
 image_with_contours = image.copy()
 
+# --- 
 # 윤곽선의 기울기 계산 및 회전
 for contour in contours:
     # 객체가 직사각형일 때만 처리
@@ -63,6 +70,7 @@ for contour in contours:
     angle = rect[2]
     
     # 직사각형의 세로, 가로 길이
+    # => 이 정보도, 데이터셋에 넣어서, 정상 칩셋인지, 아닌지 판별하는데 쓰일수 있을거 같음,
     width, height = rect[1]
     print(f"가로: {width}, 세로: {height}")
 
@@ -76,24 +84,24 @@ for contour in contours:
         # 세로가 긴 경우, 기울기를 수직으로 맞추기 위한 회전
         if angle < -45:
             angle = 90 + angle
+        else:
+            angle = angle
         
         # 각도를 0으로 맞춰 세로로 평행하게 만들기
-        if angle != 0:
+    if angle != 0:
             # 회전
-            rows, cols = image.shape[:2]
-            rotation_matrix = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
-            rotated_image = cv2.warpAffine(image, rotation_matrix, (cols, rows))
+        rows, cols = image.shape[:2]
+        rotation_matrix = cv2.getRotationMatrix2D((cols / 2, rows / 2), angle, 1)
+        rotated_image = cv2.warpAffine(image, rotation_matrix, (cols, rows))
 
-            # 회전된 이미지를 화면에 표시
-            cv2.imshow('Rotated Image', rotated_image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+        # 회전된 이미지를 화면에 표시
+        cv2.imshow('Rotated Image', rotated_image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
-            # 회전된 이미지를 저장
-            success = cv2.imwrite('test_back_spin_vertical.jpg', rotated_image)
-            if not success:
-                print("이미지 저장 실패")
-            else:
-                print("이미지 저장 성공")
-    else:
-        print('11')
+         # 회전된 이미지를 저장
+        success = cv2.imwrite('test_back_spin_width.jpg', rotated_image)
+        if not success:
+            print("이미지 저장 실패")
+        else:
+            print("이미지 저장 성공")

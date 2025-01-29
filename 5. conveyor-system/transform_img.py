@@ -1,3 +1,6 @@
+# 컨베이어 벨트의 데이터 증강을 위해
+#  회전, 확대 등의 변환을 하는건 컨베이어 벨트 환경상 맞지 않았음.
+
 import os
 import cv2
 import numpy as np

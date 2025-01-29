@@ -18,7 +18,7 @@ edges = cv2.Canny(gray, 50, 150, apertureSize=3)
 
 # 허프 변환을 사용하여 이미지에서 직선 찾기
 lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)
-
+print(lines)
 # 기울기 각도 계산
 if lines is not None:
     for line in lines:
