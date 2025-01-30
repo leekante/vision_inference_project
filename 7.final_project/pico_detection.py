@@ -130,7 +130,8 @@ CREATE TABLE IF NOT EXISTS defects (
 )
 """)
 
-# YOLO API 엔드포인트 설정
+# DETA (Swin-L)-final_pico_dataset // ENDPOINT
+#YOLO_API_URL = "https://suite-endpoint-api-apne2.superb-ai.com/endpoints/a3c73094-5e81-4302-9a99-e91068c3bec1/inference"
 YOLO_API_URL = "https://suite-endpoint-api-apne2.superb-ai.com/endpoints/a3c73094-5e81-4302-9a99-e91068c3bec1/inference"
 AUTH = HTTPBasicAuth("kdt2025_1-21", "RM6dU9G9K05me2jsNSLXh3HMAFEoNLMH1C6rsY6W")
 HEADERS = {"Content-Type": "image/jpeg"}

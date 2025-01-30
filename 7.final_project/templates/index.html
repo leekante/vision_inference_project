@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PICO CHIPSET 불량 제품 검출 결과</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        img {
+            max-width: 200px;
+            height: auto;
+        }
+        .chart-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>불량 제품 검출 결과</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>이미지</th>
+                <th>파일명</th>
+                <th>인식하지 못한 요소</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for image_path, filename, missing_elements in defective_data %}
+            <tr>
+                <td>
+                    <img src="{{ image_path }}" alt="{{ filename }}">
+                </td>
+                <td>{{ filename }}</td>
+                <td>{{ missing_elements if missing_elements else "정상" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="chart-container">
+        <h2>부품별 인식하지 못한 개수</h2>
+        <img src="{{ url_for('static', filename='defect_chart.png') }}" alt="결함 그래프">
+    </div>
+
+</body>
+</html>
