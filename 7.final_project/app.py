@@ -50,7 +50,7 @@ import matplotlib.font_manager as fm
 app = Flask(__name__)
 
 DB_PATH = "defective_products.db"
-IMAGE_FOLDER = "static/images_folder2"
+IMAGE_FOLDER = "./images_folder2"
 
 # 한글 폰트 설정 (Windows 기준)
 # 그래프 그릴떄, 글씨가 깨지는 문제가 있어서, 해당 코드를 추가해줘야 했음..

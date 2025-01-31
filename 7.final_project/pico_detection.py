@@ -105,6 +105,8 @@
 # conn.close()
 
 
+
+# pico_detection.py
 # <2. 이미지 폴더에 대해>
 import os
 import sqlite3
@@ -113,7 +115,8 @@ import cv2
 from requests.auth import HTTPBasicAuth
 
 # 이미지 폴더 경로 설정
-IMAGE_FOLDER_PATH = "C:/Users/kante/Desktop/dosan_robot/ai_1/vision-ai-inference-practice-main/images_folder2/"
+# IMAGE_FOLDER_PATH = "C:/Users/kante/Desktop/dosan_robot/ai_1/vision-ai-inference-practice-main/images_folder2/"
+IMAGE_FOLDER_PATH = "C:/Users/kante/Desktop/dosan_robot/ai_1/vision-ai-inference-practice-main/images_folder"
 
 DB_PATH = "defective_products.db"  # SQLite database file
 
